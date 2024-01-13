@@ -32,6 +32,44 @@ while (flag) {
     }
 }
 
+// Mathematical Calculations
+function calculateResults() {
+    let value = NaN;
+    for (let i = 0; i < display.length; i++) {
+        // Initialize the initial value
+        if (isNaN(value)) {
+            value = Number(display[i]);
+        }
+        if (display[i] == "-" || "+" || "*" || "/") {
+            switch (display[i]) {
+                case "+":                                   //Addition
+                    value += Number(display[i + 1]);
+                    break;
+                case "-":                                   //Subtracttion
+                    value -= Number(display[i + 1]);
+                    break;
+                case "*":                                   //Multiplication
+                    value *= Number(display[i + 1]);
+                    break;
+                case "/":                                   //Division
+                    try {
+                        value /= Number(display[i + 1]);
+                    } catch (error) {
+                        console.error("An error occureed:", error.message);
+                    }
+                    break;
+                default:
+                    { }
+            }
+        }
+        if (display[i] == "=") {
+            currentDisplay += " " + value.toString();                // return calculated value as string
+        }
+    }
+    resultDisplay = true;
+}
+
+calculateResults()
 console.log(display);
 console.log(currentDisplay);
 
